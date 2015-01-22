@@ -19,6 +19,7 @@ game.resources = [
 	 * {name: "example01", type: "tmx", src: "data/map/example01.json"},
  	 */
  	 {name: "level01", type: "tmx", src: "data/map/test.tmx"},
+ 	 //puts the map entity in the project
 	/* Background music. 
 	 * @example
 	 * {name: "example_bgm", type: "audio", src: "data/bgm/"},
