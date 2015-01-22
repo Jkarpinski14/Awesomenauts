@@ -29,4 +29,4 @@ game.PlayerEntity = me.Entity.extend({
 		return true;
 	}
 });
-//classes have both entities capitalized, while methods have only the second entity in caps	
+//classes have both entities capitalized, while methods have only the second entity in caps
