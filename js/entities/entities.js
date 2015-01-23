@@ -13,6 +13,7 @@ game.PlayerEntity = me.Entity.extend({
 
 		this.body.setVelocity(5, 20);
 		//sets movement speed
+		//the "20" allows the y-location to change
 	},
 
 	update: function(delta){
@@ -28,6 +29,15 @@ game.PlayerEntity = me.Entity.extend({
 		}
 		else{
 			this.body.vel.x = 0;
+		}
+
+		if(me.input.isKeyPressed("up")){
+			//adds to the position of my "y" by the velocity defined above in setVelocity() and multiplying it by me.timer.tick
+			//me.timer.tick makes the movement appear smooth
+			this.body.vel.y += this.body.accel.y * me.timer.tick;
+		}
+		else{
+			this.body.vel.y = 0;
 		}
 
 		this.body.update(delta);
