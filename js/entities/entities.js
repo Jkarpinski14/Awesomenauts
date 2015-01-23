@@ -11,7 +11,7 @@ game.PlayerEntity = me.Entity.extend({
 			}
 		}]);
 
-		this.body.setVelocity(5, 0);
+		this.body.setVelocity(5, 20);
 		//sets movement speed
 	},
 
@@ -20,6 +20,11 @@ game.PlayerEntity = me.Entity.extend({
 			//adds to the position of my "x" by the velocity defined above in setVelocity() and multiplying it by me.timer.tick
 			//me.timer.tick makes the movement appear smooth
 			this.body.vel.x += this.body.accel.x * me.timer.tick;
+		}
+		else if(me.input.isKeyPressed("left")){
+			//adds to the position of my "x" by the velocity defined above in setVelocity() and multiplying it by me.timer.tick
+			//me.timer.tick makes the movement appear smooth
+			this.body.vel.x -= this.body.accel.x * me.timer.tick;
 		}
 		else{
 			this.body.vel.x = 0;
