@@ -31,6 +31,7 @@ game.PlayerEntity = me.Entity.extend({
 			//adds to the position of my "x" by the velocity defined above in setVelocity() and multiplying it by me.timer.tick
 			//me.timer.tick makes the movement appear smooth
 			this.body.vel.x -= this.body.accel.x * me.timer.tick;
+			this.flipX(false);
 		}
 		else{
 			this.body.vel.x = 0;
@@ -40,10 +41,12 @@ game.PlayerEntity = me.Entity.extend({
 			if(!this.renderable.isCurrentAnimation("walk")){
 				this.renderable.setCurrentAnimation("walk");
 			}
-			else{
-				this.renderable.setCurrentAnimation("idle");
-			}
-		}	
+		}
+		//allows the character to walk
+		else{
+			this.renderable.setCurrentAnimation("idle");
+		}
+		//makes the character return to idle when not moving
 
 		this.body.update(delta);
 
