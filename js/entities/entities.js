@@ -81,6 +81,7 @@ game.PlayerBaseEntity = me.Entity.extend({
 		if(this.health<=0){
 			this.broken = true;
 		}
+		//kills the game if the health reaches or goes below zero
 		this.body.update(delta);
 
 		this._super(me.Entity, "update", [delta]);
@@ -122,9 +123,11 @@ game.EnemyBaseEntity = me.Entity.extend({
 
 		this._super(me.Entity, "update", [delta]);
 		return true;
+		//delta represents time
 	},
 
 	onCollision: function(){
 		
 	}
 });
+//this second "base" entity is for the enemy tower
