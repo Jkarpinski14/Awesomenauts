@@ -81,6 +81,7 @@ game.PlayerBaseEntity = me.Entity.extend({
 		this.renderable.addAnimation("idle", [0]);
 		this.renderable.addAnimation("broken", [1]);
 		this.renderable.setCurrentAnimation("idle");
+		//adds the animation of the player base to the game screen
 	},
 
 	update:function(delta){
@@ -124,6 +125,7 @@ game.EnemyBaseEntity = me.Entity.extend({
 		this.renderable.addAnimation("idle", [0]);
 		this.renderable.addAnimation("broken", [1]);
 		this.renderable.setCurrentAnimation("idle");
+		//adds the animation of the enemy base to the game screen
 	},
 
 	update:function(delta){
@@ -131,6 +133,7 @@ game.EnemyBaseEntity = me.Entity.extend({
 			this.broken = true;
 			this.renderable.setCurrentAnimation("broken");
 		}
+		//renders the base obsolite should it reach zero
 		this.body.update(delta);
 
 		this._super(me.Entity, "update", [delta]);
