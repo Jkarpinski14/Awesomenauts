@@ -42,9 +42,9 @@ game.PlayerEntity = me.Entity.extend({
 
 		if(me.input.isKeyPressed("attack")){
 			if(!this.renderable.isCurrentAnimation("attack")){
-				//comment
+				//sets the current animation to attack and once that is over goes back to the idle animation
 				this.renderable.setCurrentAnimation("attack", "idle");
-				//comment
+				//makes it so that the next time we start this sequence we begin from the first animation, not wherever we left off when we switched to another animation
 				this.renderable.setAnimationFrame();
 			}
 		}
