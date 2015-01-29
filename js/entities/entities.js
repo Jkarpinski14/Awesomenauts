@@ -18,6 +18,7 @@ game.PlayerEntity = me.Entity.extend({
 
 		this.renderable.addAnimation("idle", [78]);
 		this.renderable.addAnimation("walk", [117, 118, 119, 120, 121, 122, 123, 124, 125], 80);
+		this.renderable.addAnimation("attack", [65, 66, 67, 68, 69, 70, 71, 72], 80)
 
 		this.renderable.setCurrentAnimation("idle");
 	},
@@ -39,7 +40,16 @@ game.PlayerEntity = me.Entity.extend({
 			this.body.vel.x = 0;
 		}
 
-		if(this.body.vel.x !== 0){
+		if(me.input.isKeyPressed("attack")){
+			if(!this.renderable.isCurrentAnimation("attack")){
+				//comment
+				this.renderable.setCurrentAnimation("attack", "idle");
+				//comment
+				this.renderable.setAnimationFrame();
+			}
+		}
+
+		else if(this.body.vel.x !== 0){
 			if(!this.renderable.isCurrentAnimation("walk")){
 				this.renderable.setCurrentAnimation("walk");
 			}
