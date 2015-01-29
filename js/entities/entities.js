@@ -44,6 +44,7 @@ game.PlayerEntity = me.Entity.extend({
 			this.jumping = true;
 			this.body.vel.y -= this.body.accel.y * me.timer.tick;
 		}
+		//allows our player to jump, binds to key pressed in play.js
 
 		if(me.input.isKeyPressed("attack")){
 			if(!this.renderable.isCurrentAnimation("attack")){
