@@ -30,6 +30,7 @@ game.PlayerEntity = me.Entity.extend({
 			//me.timer.tick makes the movement appear smooth
 			this.body.vel.x += this.body.accel.x * me.timer.tick;
 			this.facing = "right";
+			//keeps track of what direction your character is going
 			this.flipX(true);
 		}
 		else if(me.input.isKeyPressed("left")){
@@ -37,6 +38,7 @@ game.PlayerEntity = me.Entity.extend({
 			//me.timer.tick makes the movement appear smooth
 			this.body.vel.x -= this.body.accel.x * me.timer.tick;
 			this.facing = "left";
+			//keeps track of what direction your character is going
 			this.flipX(false);
 		}
 		else{
@@ -70,6 +72,8 @@ game.PlayerEntity = me.Entity.extend({
 		//makes the character return to idle when not moving
 
 		me.collision.check(this, true, this.collideHandler.bind(this), true);
+		//passing on paramaters about character pertaining to collision
+
 		this.body.update(delta);
 
 		this._super(me.Entity, "update", [delta]);
@@ -80,6 +84,7 @@ game.PlayerEntity = me.Entity.extend({
 		if(response.b.type==='EnemyBaseEntity'){
 			var ydif = this.pos.y - response.b.pos.y;
 			var xdif = this.pos.x - response.b.pos.x;
+			//response.b represents whatever we're colliding with
 			console.log("xdif" + xdif + "ydif" + ydif);
 			
 			if(xdif>-35 && this.facing==='right' && (xdif<0)){
