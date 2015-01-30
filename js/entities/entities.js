@@ -14,6 +14,7 @@ game.PlayerEntity = me.Entity.extend({
 		this.body.setVelocity(5, 20);
 		//sets movement speed
 		//the "20" allows the y-location to change
+		this.facing = "right";
 		me.game.viewport.follow(this.pos, me.game.viewport.AXIS.BOTH);
 
 		this.renderable.addAnimation("idle", [78]);
@@ -28,20 +29,22 @@ game.PlayerEntity = me.Entity.extend({
 			//adds to the position of my "x" by the velocity defined above in setVelocity() and multiplying it by me.timer.tick
 			//me.timer.tick makes the movement appear smooth
 			this.body.vel.x += this.body.accel.x * me.timer.tick;
+			this.facing = "right";
 			this.flipX(true);
 		}
 		else if(me.input.isKeyPressed("left")){
 			//adds to the position of my "x" by the velocity defined above in setVelocity() and multiplying it by me.timer.tick
 			//me.timer.tick makes the movement appear smooth
 			this.body.vel.x -= this.body.accel.x * me.timer.tick;
+			this.facing = "left";
 			this.flipX(false);
 		}
 		else{
 			this.body.vel.x = 0;
 		}
 
-		if(me.input.isKeyPressed("jump") && !this.jumping && !this.falling){
-			this.jumping = true;
+		if(me.input.isKeyPressed("jump") && !this.body.jumping && !this.body.falling){
+			this.body.jumping = true;
 			this.body.vel.y -= this.body.accel.y * me.timer.tick;
 		}
 		//allows our player to jump, binds to key pressed in play.js
@@ -66,11 +69,30 @@ game.PlayerEntity = me.Entity.extend({
 		}
 		//makes the character return to idle when not moving
 
+		me.collision.check(this, true, this.collideHandler.bind(this), true);
 		this.body.update(delta);
 
 		this._super(me.Entity, "update", [delta]);
 		return true;
+	},
+
+	collideHandler: function(response){
+		if(response.b.type==='EnemyBaseEntity'){
+			var ydif = this.pos.y - response.b.pos.y;
+			var xdif = this.pos.x - response.b.pos.x;
+			console.log("xdif" + xdif + "ydif" + ydif);
+			
+			if(xdif>-35 && this.facing==='right' && (xdif<0)){
+				this.body.vel.x = 0;
+				this.pos.x = this.pos.x - 1;
+			}
+			else if(xdif<70 && this.facing==='left' && (xdif>0)){
+				this.body.vel.x = 0;
+				this.pos.x = this.pos.x + 1;
+			}
+		}
 	}
+
 });
 //classes have both entities capitalized, while methods have only the second entity in caps
 game.PlayerBaseEntity = me.Entity.extend({
