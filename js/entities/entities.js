@@ -92,6 +92,7 @@ game.PlayerEntity = me.Entity.extend({
 				this.body.falling = false;
 				this.body.vel.y = -1;
 			}
+			//the ydif was moved to before the xdif because the console reads from top to bottom, and should take collisions from above as a first priority
 			
 			else if(xdif>-35 && this.facing==='right' && (xdif<0)){
 				this.body.vel.x = 0;
