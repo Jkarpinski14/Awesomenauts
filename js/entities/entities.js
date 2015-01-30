@@ -15,6 +15,9 @@ game.PlayerEntity = me.Entity.extend({
 		//sets movement speed
 		//the "20" allows the y-location to change
 		this.facing = "right";
+		this.now = new Date().getTime();
+		this.lastHit = this.now;
+		this.lastAttack = new Date().getTime();
 		me.game.viewport.follow(this.pos, me.game.viewport.AXIS.BOTH);
 
 		this.renderable.addAnimation("idle", [78]);
@@ -25,6 +28,7 @@ game.PlayerEntity = me.Entity.extend({
 	},
 
 	update: function(delta){
+		this.now = new Date().getTime();
 		if(me.input.isKeyPressed("right")){
 			//adds to the position of my "x" by the velocity defined above in setVelocity() and multiplying it by me.timer.tick
 			//me.timer.tick makes the movement appear smooth
@@ -60,13 +64,13 @@ game.PlayerEntity = me.Entity.extend({
 			}
 		}
 
-		else if(this.body.vel.x !== 0){
+		else if(this.body.vel.x !== 0 && !this.renderable.isCurrentAnimation("attack")){
 			if(!this.renderable.isCurrentAnimation("walk")){
 				this.renderable.setCurrentAnimation("walk");
 			}
 		}
 		//allows the character to walk
-		else{
+		else if(!this.renderable.isCurrentAnimation("attack")){
 			this.renderable.setCurrentAnimation("idle");
 		}
 		//makes the character return to idle when not moving
@@ -101,6 +105,12 @@ game.PlayerEntity = me.Entity.extend({
 			else if(xdif<70 && this.facing==='left' && (xdif>0)){
 				this.body.vel.x = 0;
 				this.pos.x = this.pos.x + 1;
+			}
+
+			if(this.renderable.isCurrentAnimation("attack") && this.now-this.lastHit >= 1000){
+				console.log("tower Hit");
+				this.lastHit = this.now;
+				response.b.loseHealth();
 			}
 		}
 	}
@@ -193,6 +203,10 @@ game.EnemyBaseEntity = me.Entity.extend({
 
 	onCollision: function(){
 		
+	},
+
+	loseHealth: function(){
+		this.health--;
 	}
 });
 //this second "base" entity is for the enemy tower
