@@ -18,6 +18,7 @@ game.PlayerEntity = me.Entity.extend({
 		this.now = new Date().getTime();
 		this.lastHit = this.now;
 		this.lastAttack = new Date().getTime();
+		//havent used attack as of video 17
 		me.game.viewport.follow(this.pos, me.game.viewport.AXIS.BOTH);
 
 		this.renderable.addAnimation("idle", [78]);
@@ -112,6 +113,8 @@ game.PlayerEntity = me.Entity.extend({
 				this.lastHit = this.now;
 				response.b.loseHealth();
 			}
+			//checking to see if it's been 1000 milliseconds (1 second) since the base was hit, so the player doesn't keep attacking over and over again
+
 		}
 	}
 
