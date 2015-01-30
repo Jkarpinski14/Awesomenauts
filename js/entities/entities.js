@@ -241,3 +241,4 @@ game.EnemyCreep = me.Entity.extend({
 
 	}
 });
+//more or less the same code as our previous entities - this time for the creeps
