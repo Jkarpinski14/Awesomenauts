@@ -240,10 +240,12 @@ game.EnemyCreep = me.Entity.extend({
 	update: function(delta){
 
 		this.body.vel.x -= this.body.accel.x * me.timer.tick;
+		//makes the creep land on the ground floor and animate in a negative direction (left)
 		
 		this.body.update(delta);
 
 		this._super(me.Entity, "update", [delta]);
+		//calls to the super
 
 		return true;
 	}
