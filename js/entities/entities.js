@@ -231,8 +231,11 @@ game.EnemyCreep = me.Entity.extend({
 		this.health = 10;
 		this.alwaysUpdate = true;
 		this.attacking = false;
+		//this.attacking lets us know if the enemy is currently attacking
 		this.lastAttacking = new Date().getTime();
+		//keeps track of when our creep last attacked anything
 		this.lastHit = new Date().getTime();
+		//keeps track of the last time our creep hit anything
 		this.now = new Date().getTime();
 		this.body.setVelocity(3, 20);
 
@@ -263,11 +266,15 @@ game.EnemyCreep = me.Entity.extend({
 			this.attacking=true;
 			this.lastAttacking=this.now;
 			this.body.vel.x = 0;
+			//keeps moving the creep to the right to maintain its position
 			this.pos.x = this.pos.x + 1;
+			//checks that it has been at least one second since this creep hit a base
 
 			if((this.now-this.lastHit >= 1000)){
+				//updates the lastHit timer
 				this.lastHit = this.now;
 				response.b.loseHealth(1);
+				//makes the player base call its loseHealth function and passes it a damage of one
 			}
 		}
 	}
