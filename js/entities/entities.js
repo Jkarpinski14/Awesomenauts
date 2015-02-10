@@ -11,6 +11,8 @@ game.PlayerEntity = me.Entity.extend({
 			}
 		}]);
 
+		this.type = "PlayerEntity";
+		this.health = 20;
 		this.body.setVelocity(5, 20);
 		//sets movement speed
 		//the "20" allows the y-location to change
@@ -83,6 +85,11 @@ game.PlayerEntity = me.Entity.extend({
 
 		this._super(me.Entity, "update", [delta]);
 		return true;
+	},
+
+	loseHealth: function(damage){
+		this.health = this.health - damage;
+		console.log(this.health - damage);
 	},
 
 	collideHandler: function(response){
@@ -275,6 +282,21 @@ game.EnemyCreep = me.Entity.extend({
 				this.lastHit = this.now;
 				response.b.loseHealth(1);
 				//makes the player base call its loseHealth function and passes it a damage of one
+			}
+		}
+		else if(response.b.type === 'PlayerEntity'){
+			var xdif = this.pos.x - response.b.pos.x;
+
+			this.attacking=true;
+			//this.lastAttacking=this.now;
+			if(xdif>0){
+				this.pos.x = this.pos.x + 1;
+				this.body.vel.x = 0;
+			}
+
+			if((this.now-this.lastHit >= 1000 && xdif>0)){
+				this.lastHit = this.now;
+				response.b.loseHealth(1);
 			}
 		}
 	}
