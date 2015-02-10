@@ -91,6 +91,7 @@ game.PlayerEntity = me.Entity.extend({
 		this.health = this.health - damage;
 		console.log(this.health - damage);
 	},
+	//causes depletion of health
 
 	collideHandler: function(response){
 		if(response.b.type==='EnemyBaseEntity'){
@@ -293,6 +294,7 @@ game.EnemyCreep = me.Entity.extend({
 				this.pos.x = this.pos.x + 1;
 				this.body.vel.x = 0;
 			}
+			//makes sure you have to be behind the creep
 
 			if((this.now-this.lastHit >= 1000 && xdif>0)){
 				this.lastHit = this.now;
