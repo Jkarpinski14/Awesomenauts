@@ -138,10 +138,12 @@ game.PlayerEntity = me.Entity.extend({
 						this.body.vel.x = 0;
 					} 
 				}
+				//these lines of code keep the player from walking through the enemy
 
 				if(this.renderable.isCurrentAnimation("attack") && this.now-this.lastHit >= 1000
 					&& (Mat.abs(ydif) <=40) && 
 					((xdif>0) && this.facing==="left") || ((xdif<0) && this.facing==="right")
+					//the two parallel lines indicate "or"
 					){
 					this.lastHit = this.now;
 					response.b.loseHealth(1);
@@ -287,6 +289,7 @@ game.EnemyCreep = me.Entity.extend({
 		if(this.health <= 0){
 			me.game.world.removeChild(this);
 		}
+		//removes the creep from the map if its health goes beneath zero
 
 		this.now = new Date().getTime();
 
