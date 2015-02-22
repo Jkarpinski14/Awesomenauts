@@ -37,6 +37,7 @@ game.PlayerEntity = me.Entity.extend({
 
 		if(this.health <= 0){
 			this.dead = true;
+			//the lines of code that were previously here were eliminated because the melonJS update rendered them obsolete
 		}
 
 		if(me.input.isKeyPressed("right")){
@@ -363,7 +364,9 @@ game.GameManager = Object.extend({
 
 		if(game.data.player.dead){
 			me.game.world.removeChild(game.data.player);
+			//line of code added to make the initial dead player disappear
 			me.state.current().resetPlayer(10, 0);
+			//line of code added to respawn a player when health reaches zero
 		}
 
 		if(Math.round(this.now/1000)%10 ===0 && (this.now - this.lastCreep >= 1000)){

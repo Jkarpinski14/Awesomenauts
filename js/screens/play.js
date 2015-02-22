@@ -39,4 +39,5 @@ game.PlayScreen = me.ScreenObject.extend({
 			me.game.world.addChild(game.data.player, 5);
 			//pull instance of the player
 	}
+	//this function is called in entities to revove the player from the screen pool
 });
