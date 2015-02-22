@@ -69,5 +69,6 @@ var game = {
 
 		// Start the game.
 		me.state.change(me.state.MENU);
+		//makes the game commence on the menu and not the game itself
 	}
 };
