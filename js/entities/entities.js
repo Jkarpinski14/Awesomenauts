@@ -20,6 +20,7 @@ game.PlayerEntity = me.Entity.extend({
 		this.now = new Date().getTime();
 		this.lastHit = this.now;
 		this.dead = false;
+		//added to serve as an initial value for the player's ability to die
 		this.lastAttack = new Date().getTime();
 		//havent used attack as of video 17
 		me.game.viewport.follow(this.pos, me.game.viewport.AXIS.BOTH);
@@ -150,6 +151,7 @@ game.PlayerEntity = me.Entity.extend({
 				//these lines of code keep the player from walking through the enemy
 
 				if(this.renderable.isCurrentAnimation("attack") && this.now-this.lastHit >= game.data.playerAttackTimer
+					//had error on line 152 for a while, realized an additional parentheses was added by mistake
 					&& (Math.abs(ydif) <=40) && 
 					(((xdif>0) && this.facing==="left") || ((xdif<0) && this.facing==="right"))
 					//the two parallel lines indicate "or"
