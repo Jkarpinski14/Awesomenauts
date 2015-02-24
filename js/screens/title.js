@@ -8,15 +8,17 @@ game.TitleScreen = me.ScreenObject.extend({
 		//the above line of code adds an image to the title screen
 
 		me.input.bindKey(me.input.KEY.ENTER, "start");
+		//designates the enter key to starting the game
 		me.game.world.addChild(new (me.Renderable.extend({
 			init: function(){
-				this._super(me.Renderable, 'init', [510, 30, me.game.viewport.height]);
+				this._super(me.Renderable, 'init', [510, 30, me.game.viewport.width, me.game.viewport.height]);
 				this.font = new me.Font("Arial", 46, "white");
 			},
 
-			draw: function(){
+			draw: function(renderer){
 				this.font.draw(renderer.getContext(), "Awesomenauts!", 450, 130);
 				this.font.draw(renderer.getContext(), "Press Enter To Play!", 250, 530);
+				//adds text to the title screen
 			}
 		})));
 
