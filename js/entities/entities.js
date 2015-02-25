@@ -22,6 +22,7 @@ game.PlayerEntity = me.Entity.extend({
 		this.dead = false;
 		//added to serve as an initial value for the player's ability to die
 		this.attack = game.data.playerAttack;
+		//added for the gold feature, used when a creep is killed by the player
 		this.lastAttack = new Date().getTime();
 		//havent used attack as of video 17
 		me.game.viewport.follow(this.pos, me.game.viewport.AXIS.BOTH);
@@ -152,11 +153,12 @@ game.PlayerEntity = me.Entity.extend({
 					//the two parallel lines indicate "or"
 					){
 					this.lastHit = this.now;
+					//if the creeps' health is less than our attack, execute code in an if statement
 					if(response.b.health <= game.data.playerAttack){
 						game.data.gold += 1;
 						console.log("Current gold: " + game.data.gold);
 					}
-
+					//adds one gold for our creep kill
 					response.b.loseHealth(game.data.playerAttack);
 				}
 			}
@@ -375,6 +377,7 @@ game.GameManager = Object.extend({
 			game.data.gold += 1;
 			console.log("Current gold: " + game.data.gold);
 		}
+		//prevents from happenning more than once every twenty seconds
 
 		if(Math.round(this.now/1000)%10 ===0 && (this.now - this.lastCreep >= 1000)){
 			//% (mod) checks to see if we have a multiple of 10
