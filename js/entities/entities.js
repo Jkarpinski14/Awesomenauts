@@ -21,6 +21,7 @@ game.PlayerEntity = me.Entity.extend({
 		this.lastHit = this.now;
 		this.dead = false;
 		//added to serve as an initial value for the player's ability to die
+		this.attack = game.data.playerAttack;
 		this.lastAttack = new Date().getTime();
 		//havent used attack as of video 17
 		me.game.viewport.follow(this.pos, me.game.viewport.AXIS.BOTH);
@@ -97,7 +98,6 @@ game.PlayerEntity = me.Entity.extend({
 
 	loseHealth: function(damage){
 		this.health = this.health - damage;
-		console.log(this.health - damage);
 	},
 	//causes depletion of health
 
@@ -106,8 +106,6 @@ game.PlayerEntity = me.Entity.extend({
 			var ydif = this.pos.y - response.b.pos.y;
 			var xdif = this.pos.x - response.b.pos.x;
 			//response.b represents whatever we're colliding with
-			
-			console.log("xdif" + xdif + "ydif" + ydif);
 
 			if(ydif<-40 && xdif<70 && xdif>-35){
 				this.body.falling = false;
@@ -125,7 +123,6 @@ game.PlayerEntity = me.Entity.extend({
 			}
 
 			if(this.renderable.isCurrentAnimation("attack") && this.now-this.lastHit >= game.data.playerAttackTimer){
-				console.log("tower Hit");
 				this.lastHit = this.now;
 				response.b.loseHealth(game.data.playerAttack);
 			}
@@ -155,7 +152,12 @@ game.PlayerEntity = me.Entity.extend({
 					//the two parallel lines indicate "or"
 					){
 					this.lastHit = this.now;
-					response.b.loseHealth(game.playerAttack);
+					if(response.b.health <= game.data.playerAttack){
+						game.data.gold += 1;
+						console.log("Current gold: " + game.data.gold);
+					}
+
+					response.b.loseHealth(game.data.playerAttack);
 				}
 			}
 
@@ -355,7 +357,7 @@ game.GameManager = Object.extend({
 	init: function(x, y, settings){
 		this.now = new Date().getTime();
 		this.lastCreep = new Date().getTime();
-
+		this.pause = false;
 		this.alwaysUpdate = true;
 	},
 
@@ -367,6 +369,11 @@ game.GameManager = Object.extend({
 			//line of code added to make the initial dead player disappear
 			me.state.current().resetPlayer(10, 0);
 			//line of code added to respawn a player when health reaches zero
+		}
+
+		if(Math.round(this.now/1000)%20 ===0 && (this.now - this.lastCreep >= 1000)){
+			game.data.gold += 1;
+			console.log("Current gold: " + game.data.gold);
 		}
 
 		if(Math.round(this.now/1000)%10 ===0 && (this.now - this.lastCreep >= 1000)){
