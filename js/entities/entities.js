@@ -1,5 +1,18 @@
 game.PlayerEntity = me.Entity.extend({
 	init: function(x, y, settings){
+		this.setSuper();
+		this.setPlayerTimers();
+		this.setAttributes();
+		this.type = "PlayerEntity";
+		this.setFlags();
+
+		me.game.viewport.follow(this.pos, me.game.viewport.AXIS.BOTH);
+
+		this.addAnimation();
+		this.renderable.setCurrentAnimation("idle");
+	},
+
+	setSuper: function(){
 		this._super(me.Entity, 'init', [x, y, {
 			image: "player", 
 			width: 64,
@@ -10,28 +23,34 @@ game.PlayerEntity = me.Entity.extend({
 				return(new me.Rect(0, 0, 64, 64)).toPolygon();
 			}
 		}]);
+	},
 
-		this.type = "PlayerEntity";
+	setPlayerTimers: function(){
+		this.now = new Date().getTime();
+		this.lastHit = this.now;
+		this.lastAttack = new Date().getTime();
+		//haven't used attack as of video 17
+	},
+
+	setAttributes: function(){
 		this.health = game.data.playerHealth;
 		this.body.setVelocity(game.data.playerMoveSpeed, 20);
 		//sets movement speed
 		//the "20" allows the y-location to change
-		this.facing = "right";
-		this.now = new Date().getTime();
-		this.lastHit = this.now;
-		this.dead = false;
-		//added to serve as an initial value for the player's ability to die
 		this.attack = game.data.playerAttack;
 		//added for the gold feature, used when a creep is killed by the player
-		this.lastAttack = new Date().getTime();
-		//havent used attack as of video 17
-		me.game.viewport.follow(this.pos, me.game.viewport.AXIS.BOTH);
+	},
 
+	setFlags: function(){
+		this.facing = "right";
+		this.dead = false;
+		//added to serve as an initial value for the player's ability to die
+	},
+
+	addAnimation: function(){
 		this.renderable.addAnimation("idle", [78]);
 		this.renderable.addAnimation("walk", [117, 118, 119, 120, 121, 122, 123, 124, 125], 80);
 		this.renderable.addAnimation("attack", [65, 66, 667, 68, 69, 70, 71, 72], 80)
-
-		this.renderable.setCurrentAnimation("idle");
 	},
 
 	update: function(delta){
