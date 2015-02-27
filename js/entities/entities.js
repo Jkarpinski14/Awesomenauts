@@ -73,6 +73,7 @@ game.PlayerEntity = me.Entity.extend({
 			//the lines of code that were previously here were eliminated because the melonJS update rendered them obsolete
 		}
 	},
+
 	checkKeyPressesAndMove: function(){
 		if(me.input.isKeyPressed("right")){
 			this.moveRight();
@@ -143,7 +144,18 @@ game.PlayerEntity = me.Entity.extend({
 
 	collideHandler: function(response){
 		if(response.b.type==='EnemyBaseEntity'){
-			var ydif = this.pos.y - response.b.pos.y;
+			this.collideWithEnemyBase(response);
+			}
+			//checking to see if it's been 1000 milliseconds (1 second) since the base was hit, so the player doesn't keep attacking over and over again
+			else if(response.b.type==='EnemyCreep'){
+				this.collideWithEnemyCreep(response);
+			}
+
+		}
+	},
+
+	collideWithEnemyBase: function(response){
+		var ydif = this.pos.y - response.b.pos.y;
 			var xdif = this.pos.x - response.b.pos.x;
 			//response.b represents whatever we're colliding with
 
@@ -155,55 +167,60 @@ game.PlayerEntity = me.Entity.extend({
 			
 			else if(xdif>-35 && this.facing==='right' && (xdif<0)){
 				this.body.vel.x = 0;
-				//this.pos.x = this.pos.x - 1;
 			}
 			else if(xdif<70 && this.facing==='left' && (xdif>0)){
 				this.body.vel.x = 0;
-				//this.pos.x = this.pos.x + 1;
 			}
-
 			if(this.renderable.isCurrentAnimation("attack") && this.now-this.lastHit >= game.data.playerAttackTimer){
 				this.lastHit = this.now;
 				response.b.loseHealth(game.data.playerAttack);
-			}
-			//checking to see if it's been 1000 milliseconds (1 second) since the base was hit, so the player doesn't keep attacking over and over again
-			else if(response.b.type==='EnemyCreep'){
-				var xdif = this.pos.x - response.b.pos.x;
-				var ydif = this.pos.y - response.b.pos.y;
+	}
 
-				if (xdif>0){
-					//this.pos.x = this.pos.x + 1;
+	collideWithEnemyCreep: function(response){
+			var xdif = this.pos.x - response.b.pos.x;
+			var ydif = this.pos.y - response.b.pos.y;
+
+			this.stopMovement(xdif);
+			if(this.checkAttack(xdif, ydif)){
+				this.hitCreep(response);
+			};	
+	},
+
+	stopMovement: function(xdif){
+		if (xdif>0){
 					if(this.facing==="left"){
-						this.body.vel.x = 0;
+						this.body.vel.x = 0;	
 					}
 				}
 				else{
-					//this.pos.x = this.pos.x - 1;
 					if(this.facing==="right"){
 						this.body.vel.x = 0;
 					} 
 				}
 				//these lines of code keep the player from walking through the enemy
+	},
 
-				if(this.renderable.isCurrentAnimation("attack") && this.now-this.lastHit >= game.data.playerAttackTimer
-					//had error on line 152 for a while, realized an additional parentheses was added by mistake
-					&& (Math.abs(ydif) <=40) && 
-					(((xdif>0) && this.facing==="left") || ((xdif<0) && this.facing==="right"))
-					//the two parallel lines indicate "or"
-					){
-					this.lastHit = this.now;
-					//if the creeps' health is less than our attack, execute code in an if statement
-					if(response.b.health <= game.data.playerAttack){
-						game.data.gold += 1;
-						console.log("Current gold: " + game.data.gold);
-					}
-					//adds one gold for our creep kill
-					response.b.loseHealth(game.data.playerAttack);
-				}
+	checkAttack: function(xdif, ydif){
+		if(this.renderable.isCurrentAnimation("attack") && this.now-this.lastHit >= game.data.playerAttackTimer
+				//had error on line 152 for a while, realized an additional parentheses was added by mistake
+				&& (Math.abs(ydif) <=40) && 
+				(((xdif>0) && this.facing==="left") || ((xdif<0) && this.facing==="right"))
+				//the two parallel lines indicate "or"
+				){
+				this.lastHit = this.now;
+				//if the creeps' health is less than our attack, execute code in an if statement
+				return true;
 			}
+			return false;
+	},
 
-		}
+	hitCreep: function(response){
+		if(response.b.health <= game.data.playerAttack){
+					game.data.gold += 1;
+					console.log("Current gold: " + game.data.gold);
+				}
+				//adds one gold for our creep kill
+				response.b.loseHealth(game.data.playerAttack);
 	}
-
 });
 //classes have both entities capitalized, while methods have only the second entity in caps
