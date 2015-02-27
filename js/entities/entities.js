@@ -46,6 +46,7 @@ game.PlayerEntity = me.Entity.extend({
 		this.dead = false;
 		//added to serve as an initial value for the player's ability to die
 	},
+	//flags are things that only have one or two values
 
 	addAnimation: function(){
 		this.renderable.addAnimation("idle", [78]);
