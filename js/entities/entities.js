@@ -210,8 +210,10 @@ game.PlayerEntity = me.Entity.extend({
 				this.lastHit = this.now;
 				//if the creeps' health is less than our attack, execute code in an if statement
 				return true;
+				//this will execute all the code that is inside the above brackets
 			}
 			return false;
+			//if the attack check is false then the function will not happen
 	},
 
 	hitCreep: function(response){
