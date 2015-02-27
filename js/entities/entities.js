@@ -57,37 +57,9 @@ game.PlayerEntity = me.Entity.extend({
 	update: function(delta){
 		this.now = new Date().getTime();
 
-		if(this.health <= 0){
-			this.dead = true;
-			//the lines of code that were previously here were eliminated because the melonJS update rendered them obsolete
-		}
-
-		if(me.input.isKeyPressed("right")){
-			//adds to the position of my "x" by the velocity defined above in setVelocity() and multiplying it by me.timer.tick
-			//me.timer.tick makes the movement appear smooth
-			this.body.vel.x += this.body.accel.x * me.timer.tick;
-			this.facing = "right";
-			//keeps track of what direction your character is going
-			this.flipX(true);
-		}
-		else if(me.input.isKeyPressed("left")){
-			//adds to the position of my "x" by the velocity defined above in setVelocity() and multiplying it by me.timer.tick
-			//me.timer.tick makes the movement appear smooth
-			this.body.vel.x -= this.body.accel.x * me.timer.tick;
-			this.facing = "left";
-			//keeps track of what direction your character is going
-			this.flipX(false);
-		}
-		else{
-			this.body.vel.x = 0;
-		}
-
-		if(me.input.isKeyPressed("jump") && !this.body.jumping && !this.body.falling){
-			this.body.jumping = true;
-			this.body.vel.y -= this.body.accel.y * me.timer.tick;
-		}
-		//allows our player to jump, binds to key pressed in play.js
-
+		this.dead = checkIfDead();
+		this.checkKeyPressesAndMove();
+		
 		if(me.input.isKeyPressed("attack")){
 			if(!this.renderable.isCurrentAnimation("attack")){
 				//sets the current animation to attack and once that is over goes back to the idle animation
@@ -115,6 +87,52 @@ game.PlayerEntity = me.Entity.extend({
 
 		this._super(me.Entity, "update", [delta]);
 		return true;
+	},
+
+	checkIfDead: function(){
+		if(this.health <= 0){
+			return true;
+			//the lines of code that were previously here were eliminated because the melonJS update rendered them obsolete
+		}
+	},
+	checkKeyPressesAndMove: function(){
+		if(me.input.isKeyPressed("right")){
+			this.moveRight();
+		}
+		else if(me.input.isKeyPressed("left")){
+			this.moveLeft();
+		}
+		else{
+			this.body.vel.x = 0;
+		}
+
+		if(me.input.isKeyPressed("jump") && !this.body.jumping && !this.body.falling){
+			this.jump();
+		}
+		//allows our player to jump, binds to key pressed in play.js
+	},
+
+	moveRight: function(){
+		//adds to the position of my "x" by the velocity defined above in setVelocity() and multiplying it by me.timer.tick
+		//me.timer.tick makes the movement appear smooth
+		this.body.vel.x += this.body.accel.x * me.timer.tick;
+		this.facing = "right";
+		//keeps track of what direction your character is going
+		this.flipX(true);
+	},
+
+	moveLeft: function(){
+		//adds to the position of my "x" by the velocity defined above in setVelocity() and multiplying it by me.timer.tick
+		//me.timer.tick makes the movement appear smooth
+		this.body.vel.x -= this.body.accel.x * me.timer.tick;
+		this.facing = "left";
+		//keeps track of what direction your character is going
+		this.flipX(false);
+	},
+
+	jump: function(){
+		this.body.jumping = true;
+		this.body.vel.y -= this.body.accel.y * me.timer.tick;
 	},
 
 	loseHealth: function(damage){
