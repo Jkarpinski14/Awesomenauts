@@ -151,11 +151,11 @@ game.PlayerEntity = me.Entity.extend({
 				this.collideWithEnemyCreep(response);
 			}
 
-		}
-	},
+		},
+	
 
 	collideWithEnemyBase: function(response){
-		var ydif = this.pos.y - response.b.pos.y;
+			var ydif = this.pos.y - response.b.pos.y;
 			var xdif = this.pos.x - response.b.pos.x;
 			//response.b represents whatever we're colliding with
 
@@ -167,14 +167,17 @@ game.PlayerEntity = me.Entity.extend({
 			
 			else if(xdif>-35 && this.facing==='right' && (xdif<0)){
 				this.body.vel.x = 0;
+				this.pos.x = this.pos.x -1;
 			}
 			else if(xdif<70 && this.facing==='left' && (xdif>0)){
 				this.body.vel.x = 0;
+				this.pos.x = this.pos.x +1;
 			}
 			if(this.renderable.isCurrentAnimation("attack") && this.now-this.lastHit >= game.data.playerAttackTimer){
 				this.lastHit = this.now;
 				response.b.loseHealth(game.data.playerAttack);
-	}
+			};
+	},
 
 	collideWithEnemyCreep: function(response){
 			var xdif = this.pos.x - response.b.pos.x;
