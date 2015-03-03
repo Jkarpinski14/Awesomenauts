@@ -46,5 +46,24 @@ game.HeroDeathManager = Object.extend({
 			me.state.current().resetPlayer(10, 0);
 			//line of code added to respawn a player when health reaches zero
 		}
+
+		return true;
+	}
+});
+
+game.ExperienceManager = Object.extend({
+	init: function(x, y, settings){
+		this.alwaysUpdate = true;
+	},
+
+	update: function(){
+		if(game.data.win === true){
+			game.data.exp += 10;
+		}
+		else if(game.data.win === false){
+			game.data.exp += 1;
+		}
+
+		return true;
 	}
 });
