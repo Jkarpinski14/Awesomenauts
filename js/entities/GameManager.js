@@ -61,14 +61,17 @@ game.ExperienceManager = Object.extend({
 		if(game.data.win === true && !this.gameOver){
 			game.data.exp += 10;
 			this.gameOver = true;
+			//will make the game end if your base is crushed
 		}
 		//gives 10 experience points if a base is successfully destroyed
 		else if(game.data.win === false && !this.gameOver){
 			game.data.exp += 1;
 			this.gameOver = true;
+			//will make the game end if the enemy base is crushed
 		}
 		//only 1 experience point given if there's a loss
 		console.log(game.data.exp);
+		//only allows the if and else if statements to run if the game is NOT over
 
 		return true;
 		//if your base is broken first, then you lose
