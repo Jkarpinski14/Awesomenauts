@@ -60,10 +60,13 @@ game.ExperienceManager = Object.extend({
 		if(game.data.win === true){
 			game.data.exp += 10;
 		}
+		//gives 10 experience points if a base is successfully destroyed
 		else if(game.data.win === false){
 			game.data.exp += 1;
 		}
+		//only 1 experience point given if there's a loss
 
 		return true;
+		//if your base is broken first, then you lose
 	}
 });
