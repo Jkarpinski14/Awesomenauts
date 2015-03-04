@@ -60,8 +60,10 @@ game.TitleScreen = me.ScreenObject.extend({
 				me.input.releasePointerEvent('pointerdown', this);
 				//"releasePointerEvent" makes sure the computer doesn't keep listening for the clicker event as the game goes on
 				me.state.change(me.state.PLAY);
+				//doesn't delete the values saved in the exp variables
 			}
 		})));
+		//continues the game you were previously playing instead of starting a new one
 
 	},
 	 
