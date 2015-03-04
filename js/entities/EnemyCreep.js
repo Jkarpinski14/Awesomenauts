@@ -32,7 +32,7 @@ game.EnemyCreep = me.Entity.extend({
 	},
 
 	update: function(delta){
-		console.log(this.health);
+		//console.log(this.health);
 		if(this.health <= 0){
 			me.game.world.removeChild(this);
 		}
