@@ -7,26 +7,33 @@ game.TitleScreen = me.ScreenObject.extend({
 		//the -10 is the z-axis for putting our title screen in the back
 		//the above line of code adds an image to the title screen
 
-		me.input.bindKey(me.input.KEY.ENTER, "start");
-		//designates the enter key to starting the game
 		me.game.world.addChild(new (me.Renderable.extend({
 			init: function(){
-				this._super(me.Renderable, 'init', [510, 30, me.game.viewport.width, me.game.viewport.height]);
-				this.font = new me.Font("Arial", 46, "white");
+				this._super(me.Renderable, 'init', [270, 240, 300, 50]);
+				this.font = new me.Font("Arial", 54, "red");
+				me.input.registerPointerEvent('pointerdown', this, this.newGame.bind(this), true);
 			},
 
 			draw: function(renderer){
-				this.font.draw(renderer.getContext(), "Awesomenauts!", 450, 130);
-				this.font.draw(renderer.getContext(), "Press Enter To Play!", 250, 530);
+				this.font.draw(renderer.getContext(), "START A NEW GAME", this.pos.x, this.pos.y);
 				//adds text to the title screen
+			},
+
+			update: function(dt){
+				return true;
+			},
+
+			newGame: function(){
+				me.input.releasePointerEvent('pointerdown', this);
+				me.save.remove('exp');
+				me.save.remove('exp1');
+				me.save.remove('exp2');
+				me.save.remove('exp3');
+				me.save.remove('exp4');
+				me.state.change(me.state.PLAY);
 			}
 		})));
 
-		this.handler = me.event.subscribe(me.event.KEYDOWN, function (action, keyCode, edge){
-			if(action === "start"){
-				me.state.change(me.state.PLAY);
-			}
-		});
 	},
 	 
 	
@@ -34,7 +41,6 @@ game.TitleScreen = me.ScreenObject.extend({
 	 *  action to perform when leaving this screen (state change)
 	 */
 	onDestroyEvent: function(renderer) {
-		me.input.unbindKey(me.input.KEY.ENTER);
-		me.event.unsubscribe(this.handler);
+		
 	}
 });
