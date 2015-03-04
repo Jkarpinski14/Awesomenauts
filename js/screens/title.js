@@ -12,6 +12,8 @@ game.TitleScreen = me.ScreenObject.extend({
 				this._super(me.Renderable, 'init', [270, 240, 300, 50]);
 				this.font = new me.Font("Arial", 54, "red");
 				me.input.registerPointerEvent('pointerdown', this, this.newGame.bind(this), true);
+				//"pointerdown" listens for the mouse to be clicked down
+				//"this" checks if you are clicking on the defined object
 			},
 
 			draw: function(renderer){
@@ -25,12 +27,14 @@ game.TitleScreen = me.ScreenObject.extend({
 
 			newGame: function(){
 				me.input.releasePointerEvent('pointerdown', this);
+				//"releasePointerEvent" makes sure the computer doesn't keep listening for the clicker event as the game goes on
 				me.save.remove('exp');
 				me.save.remove('exp1');
 				me.save.remove('exp2');
 				me.save.remove('exp3');
 				me.save.remove('exp4');
 				me.state.change(me.state.PLAY);
+				//eliminates the saved data in the exp variables when a new game is started
 			}
 		})));
 
