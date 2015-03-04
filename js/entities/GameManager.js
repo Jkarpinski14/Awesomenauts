@@ -84,4 +84,5 @@ game.ExperienceManager = Object.extend({
 		//will make the game end if your base is crushed
 		me.save.exp = game.data.exp;
 	}
+	//boolean means either set to true or false
 });
