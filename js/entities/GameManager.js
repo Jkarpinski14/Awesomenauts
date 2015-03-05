@@ -54,15 +54,15 @@ game.HeroDeathManager = Object.extend({
 game.ExperienceManager = Object.extend({
 	init: function(x, y, settings){
 		this.alwaysUpdate = true;
-		this.gameOver = false;
+		this.gameover = false;
 	},
 
 	update: function(){
-		if(game.data.win === true && !this.gameOver){
+		if(game.data.win === true && !this.gameover){
 			this.gameOver(true);
 		}
 		//gives 10 experience points if a base is successfully destroyed
-		else if(game.data.win === false && !this.gameOver){
+		else if(game.data.win === false && !this.gameover){
 			this.gameOver(false);
 		}
 		//only 1 experience point given if there's a loss
@@ -79,8 +79,8 @@ game.ExperienceManager = Object.extend({
 		else{
 			game.data.exp += 1;
 		}
-		
-		this.gameOver = true;
+		console.log(game.data.exp);
+		this.gameover = true;
 		//will make the game end if your base is crushed
 		me.save.exp = game.data.exp;
 	}

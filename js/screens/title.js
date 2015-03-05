@@ -57,6 +57,11 @@ game.TitleScreen = me.ScreenObject.extend({
 			},
 
 			newGame: function(){
+				game.data.exp = me.save.exp;
+				game.data.exp1 = me.save.exp1;
+				game.data.exp2 = me.save.exp2;
+				game.data.exp3 = me.save.exp3;
+				game.data.exp4 = me.save.exp4;
 				me.input.releasePointerEvent('pointerdown', this);
 				//"releasePointerEvent" makes sure the computer doesn't keep listening for the clicker event as the game goes on
 				me.state.change(me.state.PLAY);
