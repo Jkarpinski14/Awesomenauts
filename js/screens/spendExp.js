@@ -21,6 +21,7 @@ game.SpendExp = me.ScreenObject.extend({
 				this.font.draw(renderer.getContext(), "F3: INCREASE ATTACK DAMAGE " + game.data.exp.toString(), this.pos.x + 100, this.pos.y + 200);
 				this.font.draw(renderer.getContext(), "F4: INCREASE HEALTH" + game.data.exp.toString(), this.pos.x + 100, this.pos.y + 250);
 				//adds text to the screen
+				//the numbers added to the x and y positions move the text down as to not overlap
 			},
 		})));
 
