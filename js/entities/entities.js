@@ -182,8 +182,8 @@ game.PlayerEntity = me.Entity.extend({
 	collideWithEnemyCreep: function(response){
 			var xdif = this.pos.x - response.b.pos.x;
 			var ydif = this.pos.y - response.b.pos.y;
-
 			this.stopMovement(xdif);
+
 			if(this.checkAttack(xdif, ydif)){
 				this.hitCreep(response);
 			};	
@@ -191,11 +191,13 @@ game.PlayerEntity = me.Entity.extend({
 
 	stopMovement: function(xdif){
 		if (xdif>0){
+					this.pos.x = this.pos.x +1;
 					if(this.facing==="left"){
 						this.body.vel.x = 0;	
 					}
 				}
 				else{
+					this.pos.x = this.pos.x -1;
 					if(this.facing==="right"){
 						this.body.vel.x = 0;
 					} 
@@ -204,12 +206,15 @@ game.PlayerEntity = me.Entity.extend({
 	},
 
 	checkAttack: function(xdif, ydif){
-		if(this.renderable.isCurrentAnimation("attack") && this.now-this.lastHit >= game.data.playerAttackTimer
+		//if(this.renderable.isCurrentAnimation("attack") && this.now-this.lastHit >= game.data.playerAttackTimer
 				//had error on line 152 for a while, realized an additional parentheses was added by mistake
-				&& (Math.abs(ydif) <=40) && 
-				(((xdif>0) && this.facing==="left") || ((xdif<0) && this.facing==="right"))
+				///&& (Math.abs(ydif <=40) && 
+				//(((xdif>0) && this.facing==="left") || ((xdif<0) && this.facing==="right"))
 				//the two parallel lines indicate "or"
-				){
+				//){
+		if (this.renderable.isCurrentAnimation('attack') && this.now-this.lastHit >= game.data.playerAttackTimer && (Math.abs(ydif<=40) && 
+			((xdif>0) && this.facing === 'left') || ((xdif < 0 ) && this.facing === 'right')
+			)){
 				this.lastHit = this.now;
 				//if the creeps' health is less than our attack, execute code in an if statement
 				return true;

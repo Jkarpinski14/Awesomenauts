@@ -65,7 +65,7 @@ game.TitleScreen = me.ScreenObject.extend({
 				//loads the experience points from a previously saved game
 				me.input.releasePointerEvent('pointerdown', this);
 				//"releasePointerEvent" makes sure the computer doesn't keep listening for the clicker event as the game goes on
-				me.state.change(me.state.PLAY);
+				me.state.change(me.state.SPENDEXP);
 				//doesn't delete the values saved in the exp variables
 			}
 		})));
