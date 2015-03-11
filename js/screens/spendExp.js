@@ -12,6 +12,7 @@ game.SpendExp = me.ScreenObject.extend({
 		me.input.bindKey(me.input.KEY.F3, "F3");
 		me.input.bindKey(me.input.KEY.F4, "F4");
 		me.input.bindKey(me.input.KEY.F5, "F5");
+		//sets each binded key to a later distinguished action
 
 		me.game.world.addChild(new (me.Renderable.extend({
 			init: function(){
@@ -28,6 +29,7 @@ game.SpendExp = me.ScreenObject.extend({
 				this.font.draw(renderer.getContext(), "F4: INCREASE HEALTH ", this.pos.x, this.pos.y + 250);
 				//adds text to the screen
 				//the numbers added to the x and y positions move the text down as to not overlap
+				//exp added to the text
 			},	
 		})));
 
@@ -46,6 +48,7 @@ game.SpendExp = me.ScreenObject.extend({
 			}
 			else if(action === "F5"){
 				me.state.change(me.state.PLAY);
+				//plays the game when F5 is pressed
 			}
 		});
 	},
@@ -61,6 +64,7 @@ game.SpendExp = me.ScreenObject.extend({
 		me.input.unbindKey(me.input.KEY.F4, "F4");
 		me.input.unbindKey(me.input.KEY.F5, "F5");
 		me.event.unsubscribe(this.handler);
+		//prevents keys from being used again once one has been selected
 	}
 });
 //this new file is run when you select "continue" and is proceeded by the option to spend experience or play the game
