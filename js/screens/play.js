@@ -42,8 +42,8 @@ game.PlayScreen = me.ScreenObject.extend({
 
 	resetPlayer: function(x, y){
 		game.data.player = me.pool.pull("player", x, y, {});
-			me.game.world.addChild(game.data.player, 5);
-			//pull instance of the player
+		me.game.world.addChild(game.data.player, 5);
+		//pull instance of the player
 	}
 	//this function is called in entities to revove the player from the screen pool
 });
