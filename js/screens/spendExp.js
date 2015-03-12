@@ -14,6 +14,7 @@ game.SpendExp = me.ScreenObject.extend({
 		me.input.bindKey(me.input.KEY.F5, "F5");
 		var exp1cost = ((game.data.exp1 + 1) * 10);
 		//sets each binded key to a later distinguished action
+		//declares a variable for adding exp points by one
 
 		me.game.world.addChild(new (me.Renderable.extend({
 			init: function(){
@@ -40,9 +41,11 @@ game.SpendExp = me.ScreenObject.extend({
 					game.data.exp1 += 1;
 					game.data.exp -= exp1cost;
 					me.state.change(me.state.PLAY);
+					//if there's enough experience, one can purchase gold increasing abilities
 				}
 				else{
 					console.log("not enough experience");
+					//dispalys the text to the console when there isn't enough exp
 				}
 			}
 			else if(action === "F2"){
