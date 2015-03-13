@@ -87,3 +87,16 @@ game.ExperienceManager = Object.extend({
 	}
 	//boolean means either set to true or false
 });
+
+game.spendGold = Object.extend({
+	init: function(x, y, settings){
+		this.now = new Date().getTime();
+		this.lastBuy = new Date().getTime();
+		this.paused = false;
+		this.alwaysUpdate = true;	
+	},
+
+	update: function(){
+		return true;
+	}
+});
