@@ -100,15 +100,17 @@ game.spendGold = Object.extend({
 
 	update: function(){
 		this.now = new Date().getTime();
-		
+
 		if(me.input.isKeyPressed("buy") && this.now-this.lastBuy >=1000){
 			this.lastBuy = this.now;
 			if(!this.buying){
 				this.startBuying();
 			}
+			//calls the startBuying function
 			else{
 				this.stopBuying();
 			}
+			//calls the stopBuying function
 		}
 
 		return true;
@@ -124,6 +126,7 @@ game.spendGold = Object.extend({
 		me.game.world.addChild(game.data.buyscreen, 34);
 		game.data.player.body.setVelocity(0, 0);
 	},
+	//brings up an opaque pause screen
 
 	stopBuying: function(){
 		this.buying = false;
@@ -131,4 +134,6 @@ game.spendGold = Object.extend({
 		game.data.player.body.setVelocity(game.data.playerMoveSpeed, 20);
 		me.game.world.removeChild(game.data.buyscreen);
 	}
+	//removes the pause screen when "B" is pressed again
+
 });
