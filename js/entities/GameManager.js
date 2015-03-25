@@ -146,10 +146,13 @@ game.spendGold = Object.extend({
 
 			draw: function(renderer){
 				this.font.draw(renderer.getContext(), "Press F1-F6 to buy, B to Exit", this.pos.x, this.pos.y);
+			}
+			//missing bracket here was causing error	
 				
 		}));
 		me.game.world.addChild(game.data.buytext, 35);
 	},
+	//makes sure the text only appears on the pause screen
 
 	stopBuying: function(){
 		this.buying = false;
@@ -162,6 +165,7 @@ game.spendGold = Object.extend({
 		me.input.unbindKey(me.input.KEY.F4, "F4", true);
 		me.input.unbindKey(me.input.KEY.F5, "F5", true);
 		me.input.unbindKey(me.input.KEY.F6, "F6", true);
+		//prevents the keys from being activated on any screen besides the one they're designated for
 		me.game.world.removeChild(game.data.buytext);
 	}
 	//removes the pause screen when "B" is pressed again
