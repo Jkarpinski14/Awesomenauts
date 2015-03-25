@@ -31,7 +31,8 @@ var game = {
 		exp4: 0,
 		win: "",
 		pausePos: "",
-		buyScreen: ""
+		buyScreen: "",
+		buyText: ""
 	},
 	//sets a numerical value to all the different varying aspects of the game
 	
