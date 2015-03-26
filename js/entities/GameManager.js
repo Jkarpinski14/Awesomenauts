@@ -152,6 +152,8 @@ game.spendGold = Object.extend({
 				this.font.draw(renderer.getContext(), "Q Ability: Speedy Gonzales. Current Level: " + game.data.ability1 + " ; Cost: " + ((game.data.ability1+1)*10), this.pos.x, this.pos.y + 160);
 				this.font.draw(renderer.getContext(), "W Ability: Eat Creep For Health: " + game.data.ability2 + " ; Cost: " + ((game.data.ability2+1)*10), this.pos.x, this.pos.y + 200);
 				this.font.draw(renderer.getContext(), "E Ability: Throw Your Spear: " + game.data.ability3 + " ; Cost: " + ((game.data.ability3+1)*10), this.pos.x, this.pos.y + 240);
+				//these lines of code add text to the buy screen and keep track of the gold and experience variables
+				//the variables in turn allow us to purchase abilities and skills
 			}
 			//missing bracket here was causing error	
 				
