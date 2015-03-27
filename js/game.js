@@ -100,6 +100,7 @@ var game = {
 		me.state.set(me.state.LOAD, new game.LoadProfile());
 		me.state.set(me.state.NEW, new game.NewProfile());
 		//loads the files in play.js as the initial screen when opening the game
+		//sets melon.js functions for use at all given times throughout the game
 
 		// Start the game.
 		me.state.change(me.state.MENU);

@@ -4,12 +4,14 @@ game.LoadProfile = me.ScreenObject.extend({
 	 */
 	onResetEvent: function() {	
 		me.game.world.addChild(new me.Sprite(0, 0, me.loader.getImage('load-screen')), -10);
+		//places the load-screen image as the background image for the loading page
 
 		me.input.unbindKey(me.input.KEY.B);
 		me.input.unbindKey(me.input.KEY.Q);
 		me.input.unbindKey(me.input.KEY.E);
 		me.input.unbindKey(me.input.KEY.W);
 		me.input.unbindKey(me.input.KEY.A);
+		//these keys are unbinded so that you can enter them into the username and password
 
 		me.game.world.addChild(new (me.Renderable.extend({
 			init: function(){
@@ -23,11 +25,11 @@ game.LoadProfile = me.ScreenObject.extend({
 			},	
 
 		})));
-	
+	},
 	/**	
 	 *  action to perform when leaving this screen (state change)
 	 */
 	onDestroyEvent: function(renderer) {
-
+		//this is a placeholder
 	}
 });
