@@ -62,6 +62,8 @@ var game = {
 
 	me.state.SPENDEXP = 112;
 	//sets SPENDEXP as a default melonJS variable, similar to PLAY
+	me.state.LOAD = 113;
+	me.state.NEW = 114;
 
 	// console.log(game.data.exp);
 	// console.log(game.data.exp2);
@@ -95,6 +97,8 @@ var game = {
 		me.state.set(me.state.MENU, new game.TitleScreen());
 		me.state.set(me.state.PLAY, new game.PlayScreen());
 		me.state.set(me.state.SPENDEXP, new game.SpendExp());
+		me.state.set(me.state.LOAD, new game.LoadProfile());
+		me.state.set(me.state.NEW, new game.NewProfile());
 		//loads the files in play.js as the initial screen when opening the game
 
 		// Start the game.

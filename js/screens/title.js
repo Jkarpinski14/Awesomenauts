@@ -28,15 +28,7 @@ game.TitleScreen = me.ScreenObject.extend({
 			newGame: function(){
 				me.input.releasePointerEvent('pointerdown', this);
 				//"releasePointerEvent" makes sure the computer doesn't keep listening for the clicker event as the game goes on
-				me.save.remove('exp');
-				me.save.remove('exp1');
-				me.save.remove('exp2');
-				me.save.remove('exp3');
-				me.save.remove('exp4');
-				me.save.add({exp: 0, exp1: 0, exp2: 0, exp3: 0, exp4: 0});
-				//added to set the experience to zero
-				me.state.change(me.state.PLAY);
-				//eliminates the saved data in the exp variables when a new game is started
+				me.state.change(me.state.LOAD);
 			}
 		})));
 
@@ -59,12 +51,6 @@ game.TitleScreen = me.ScreenObject.extend({
 			},
 
 			newGame: function(){
-				game.data.exp = me.save.exp;
-				game.data.exp1 = me.save.exp1;
-				game.data.exp2 = me.save.exp2;
-				game.data.exp3 = me.save.exp3;
-				game.data.exp4 = me.save.exp4;
-				//loads the experience points from a previously saved game
 				me.input.releasePointerEvent('pointerdown', this);
 				//"releasePointerEvent" makes sure the computer doesn't keep listening for the clicker event as the game goes on
 				me.state.change(me.state.SPENDEXP);
