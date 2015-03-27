@@ -236,6 +236,8 @@ game.spendGold = Object.extend({
 			return false;
 		}
 	},
+	//checks that the gold content is more than what is required to purchase the skill upgrade
+	//returns as true and runs the makePurchase function
 
 	makePurchase: function(){
 		if(skill === 1){
@@ -264,5 +266,8 @@ game.spendGold = Object.extend({
 			game.data.ability3 += 1;
 		}	
 	}
+	//checks if the skill level for each particular skill is at a certain amount
+	//if so, the amount (at the time) of gold that it would take to power up that ability is removed from the player's current gold content
+	//then it adds to the skill level total
 
 });
