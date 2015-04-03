@@ -43,3 +43,4 @@ body {
 #register{
 	visibility: hidden;
 }
+/*keeps the load and register buttons invisible until the register and load screens*/
