@@ -57,9 +57,6 @@ var game = {
 		});
 	}
 
-	me.save.add({exp: 0, exp1: 0, exp2: 0, exp3: 0, exp4: 0});
-	//saves the experience points using a built-in melonJS function
-
 	me.state.SPENDEXP = 112;
 	//sets SPENDEXP as a default melonJS variable, similar to PLAY
 	me.state.LOAD = 113;
