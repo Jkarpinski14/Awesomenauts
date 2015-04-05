@@ -42,5 +42,6 @@ body {
 }
 #register{
 	/*visibility: hidden;*/
+	/*switched this css aspect off because it was preventing the register button from showing up period*/
 }
 /*keeps the load and register buttons invisible until the register and load screens*/
