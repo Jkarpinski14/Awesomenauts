@@ -25,7 +25,7 @@
 			$array["exp3"] = $row["exp3"];
 			$array["exp4"] = $row["exp4"];
 			/*takes the experience variable from the "row," which is where the queries are pulled*/
-
+			$_SESSION["name"] = $username;
 			echo json_encode($array);
 			/*allows the array to be echoed out as one statement thanks to JSON*/
 		}
