@@ -33,6 +33,7 @@
 			<div class="password">
 				<label for='password'>Password</label>
 				<input type='password' name='password' id='password'>
+				<!--setting the input type to password prevents the actual characters from being visible on the screen-->
 			</div>
 
 			<button type='button' id='register'>Register</button>
@@ -138,6 +139,7 @@
 				if(response==="Invalid username and/or password"){
 					alert(response);
 				}
+				//alerts this to the screen if there is an invalid username/password combination
 				else{
 					var data = jQuery.parseJSON(response);
 					game.data.exp = data["exp"];
@@ -147,6 +149,7 @@
 					game.data.exp4 = data["exp4"];
 					me.state.change(me.state.SPENDEXP);
 				}
+				//loads all the previous experience for the user if the username/password combination proves to be valid
 			})
 			.fail(function(response){
 				alert("Fail");

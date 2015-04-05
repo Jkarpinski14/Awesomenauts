@@ -6,9 +6,9 @@
 	/*FILTER deletes invalid characters*/
 
 	$salt = "$5$" . "rounds=5000$" . uniqid(mt_rand(), true) . "$";
-	/*salt makes hashed password unique to us*/
+
 	$hashedPassword = crypt($password, $salt);
-	/*prevents a duplicate password from hasing the same input*/
+
 	$query = $_SESSION["connection"]->query("INSERT INTO users SET "
 		. "username = '$username', "
 		. "password = '$hashedPassword', "
