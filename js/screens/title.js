@@ -6,7 +6,7 @@ game.TitleScreen = me.ScreenObject.extend({
 		me.game.world.addChild(new me.Sprite(0, 0, me.loader.getImage('title-screen')), -10);
 		//the -10 is the z-axis for putting our title screen in the back
 		//the above line of code adds an image to the title screen
-		
+
 		me.game.world.addChild(new (me.Renderable.extend({
 			init: function(){
 				this._super(me.Renderable, 'init', [270, 240, 300, 50]);
@@ -69,3 +69,4 @@ game.TitleScreen = me.ScreenObject.extend({
 		
 	}
 });
+//NOTE: initially planned to change the "relase pointer" to the options 1 and 2 as designated in the video but the video did not show where the code was being added, so I chose not to
