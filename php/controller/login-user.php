@@ -13,6 +13,7 @@
 	$password = filter_input(INPUT_POST, "password", FILTER_SANITIZE_STRING);
 	$query = $_SESSION["connection"]->query("SELECT * FROM users WHERE username = '$username'");
 	/*retrievs the salt and the password from the users table, and makes sure to only get it from the table with information attached to a designated username*/
+	/*the * is a representation for ALL*/
 
 	if($query->num_rows == 1){
 		$row = $query->fetch_array();
@@ -23,8 +24,10 @@
 			$array["exp2"] = $row["exp2"];
 			$array["exp3"] = $row["exp3"];
 			$array["exp4"] = $row["exp4"];
+			/*takes the experience variable from the "row," which is where the queries are pulled*/
 
-			echo "<p>Login Successful!</p>";
+			echo json_encode($array);
+			/*allows the array to be echoed out as one statement thanks to JSON*/
 		}
 		else{
 			echo "<p>Invalid username and/or password</p>";
