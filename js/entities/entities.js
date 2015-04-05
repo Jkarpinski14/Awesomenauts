@@ -134,7 +134,9 @@ game.PlayerEntity = me.Entity.extend({
 			this.lastSpear = this.now;
 			var spear = me.pool.pull("spear", this.pos.x, this.pos.y, {});
 			me.game.world.addChild(spear, 10);
-		}	
+		}
+		//prevents the ability from activating if the ability level is zero
+		//adds a spear to the game for (to be added) throwing abilities
 	}
 
 	setAnimation: function(){
