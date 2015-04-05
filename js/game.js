@@ -21,6 +21,7 @@ var game = {
 		creepMoveSpeed: 5,
 		gameTimerManager: "",
 		heroDeathManager: "",
+		spearTimer: 15,
 		player: "",
 		exp: 0,
 		gold: 0,
@@ -88,7 +89,8 @@ var game = {
 		me.pool.register("GameTimerManager", game.GameTimerManager);
 		me.pool.register("HeroDeathManager", game.HeroDeathManager);
 		me.pool.register("ExperienceManager", game.ExperienceManager);
-		me.pool.register("SpendGold", game.SpendGold	);
+		me.pool.register("SpendGold", game.SpendGold);
+		me.pool.register("spear", game.SpearThrow);
 		//set to true when there's multiple of that entity
 
 		me.state.set(me.state.MENU, new game.TitleScreen());

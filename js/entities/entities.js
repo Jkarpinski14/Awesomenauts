@@ -28,6 +28,7 @@ game.PlayerEntity = me.Entity.extend({
 	setPlayerTimers: function(){
 		this.now = new Date().getTime();
 		this.lastHit = this.now;
+		this.lastSpear = this.now;
 		this.lastAttack = new Date().getTime();
 		//haven't used attack as of video 17
 	},
@@ -59,6 +60,7 @@ game.PlayerEntity = me.Entity.extend({
 		this.now = new Date().getTime();
 		this.dead = this.checkIfDead();
 		this.checkKeyPressesAndMove();
+		this.checkAbilityKeys();
 		this.setAnimation();
 		me.collision.check(this, true, this.collideHandler.bind(this), true);
 		//passing on paramaters about character pertaining to collision
@@ -102,10 +104,10 @@ game.PlayerEntity = me.Entity.extend({
 	},
 
 	moveLeft: function(){
+		this.facing = "left";
 		//adds to the position of my "x" by the velocity defined above in setVelocity() and multiplying it by me.timer.tick
 		//me.timer.tick makes the movement appear smooth
 		this.body.vel.x -= this.body.accel.x * me.timer.tick;
-		this.facing = "left";
 		//keeps track of what direction your character is going
 		this.flipX(false);
 	},
@@ -114,6 +116,26 @@ game.PlayerEntity = me.Entity.extend({
 		this.body.jumping = true;
 		this.body.vel.y -= this.body.accel.y * me.timer.tick;
 	},
+
+	checkAbilityKeys: function(){
+		if(me.input.isKeyPressed("skill1")){
+			//this.speedBurst();
+		}
+		else if(me.input.isKeyPressed("skill2")){
+			//this.eatCreep();
+		}
+		else if(me.input.isKeyPressed("skill3")){
+			this.throwSpear();
+		}
+	},
+
+	throwSpear: function(){
+		if(this.lastSpear >= game.data.spearTimer && game.data.ability3 >= 0){
+			this.lastSpear = this.now;
+			var spear = me.pool.pull("spear", this.pos.x, this.pos.y, {});
+			me.game.world.addChild(spear, 10);
+		}	
+	}
 
 	setAnimation: function(){
 		if(this.attacking){
