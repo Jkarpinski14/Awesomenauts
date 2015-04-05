@@ -56,6 +56,9 @@ game.ExperienceManager = Object.extend({
 			.fail(function(response){
 				alert("Fail");
 			});
+			//runs the AJAX code when the player loses the game
+			//saves the experience through the save-user file
+			//reverts the player to the main menu screen
 	}
 	//boolean means either set to true or false
 });

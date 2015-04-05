@@ -15,6 +15,7 @@ game.SpendExp = me.ScreenObject.extend({
 		var exp1cost = ((Number(game.data.exp1) + 1) * 10);
 		//sets each binded key to a later distinguished action
 		//declares a variable for adding exp points by one
+		//lets the computer know to treat this experience like a number and not a letter character
 
 		me.game.world.addChild(new (me.Renderable.extend({
 			init: function(){
