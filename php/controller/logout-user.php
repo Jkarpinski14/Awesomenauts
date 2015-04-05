@@ -6,4 +6,4 @@
 	session_destroy();
 	header("Location: " . $path . "index.php");
 	/*eliminates the session variable to negate the login*/
-/*this page is for logging out of the blog*/
+	/*this page is for logging out of the blog*/

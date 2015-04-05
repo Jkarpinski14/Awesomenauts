@@ -9,10 +9,12 @@
 
 	$query = $_SESSION["connection"]->query("UPDATE users SET "
 		. "exp = $exp, "
+		/*the "." converts to MYSEQUL code and concatinates it*/
 		. "exp1 = $exp1, "
 		. "exp2 = $exp2, "
 		. "exp3 = $exp3, "
 		. "exp4 = $exp4 WHERE username = \"" . $_SESSION["name"]. "\"");
+		/*takes the 5 experience variables and stores them as experience where the username is whoever is logged in*/
 
 	if($query){
 		echo "true";
@@ -20,3 +22,4 @@
 	else{
 		echo "<p>" . $_SESSION["connection"]->error . "</p>";
 	}
+	/*$_SESSION appears in other files to make sure the game knows who is logged in at all times*/
