@@ -1,0 +1,33 @@
+@import url(http://fonts.googleapis.com/css?family=Chango);
+
+body {
+  padding-top:50px;
+  background:url(http://scotch.io/wp-content/uploads/2014/11/silhouette.jpg);
+/* make our image 100% width */
+  background-size:cover; 
+}
+
+h1 {
+  font-family:'Chango';
+  font-size:50px;
+  color: white;  
+  -webkit-background-clip: text;
+  /*-webkit-text-fill-color: transparent;*/
+
+  /* set the background gradient */
+  background:url(http://scotch.io/wp-content/uploads/2014/11/galaxies.jpg);
+  background-size:cover;
+
+  /* set the animation */
+  -webkit-animation:moving 5s ease infinite;
+}
+
+/* create the animation */
+@-webkit-keyframes moving {
+  0% {
+    background-position: 0 0;
+  }
+  100% {
+    background-position: 0 500px;
+  }
+}​

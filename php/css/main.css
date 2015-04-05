@@ -1,0 +1,62 @@
+.body1{
+	background-color: red;
+	font-style: italic;
+	font-size: 25px;
+	text-align: center;
+}
+.button:hover{
+	font-size:34px;
+	color:white;
+	font-style:italic;
+}
+label{
+	background-color: red;
+}
+input{
+	background-color: orange;
+}
+textarea{
+	background-color: orange;
+}
+h1{
+	background-color: orange;
+}
+button{
+	background-color: blue;
+	font-size: 30px;
+}
+nav{
+	background-color: red;
+	font-style: italic;
+	font-size: 25px;
+	text-align: center;
+}
+#tritonal{
+	height: 50px;
+	color: white;
+	background-color: black;
+}
+
+
+@media screen and (max-width:1024px){
+	form{
+		width:100%;
+		
+	}
+	#header {
+		width: 100%;
+		background-color:green;
+	}
+
+@media screen and (max-width:320px){
+	form{
+		width:100%;
+		
+	}
+	#header {
+		width: 100%;
+		background-color:blue;
+	}
+	#img{
+		width: 100%;
+	}
