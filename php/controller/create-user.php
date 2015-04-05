@@ -28,4 +28,4 @@
 	else{
 		echo "<p>" . $_SESSION["connection"]->error . "</p>";
 	}
-	/*prints an error to the screen if the user is not created successfully*/
+	/*prints an error to the screen if the user is not created successfully*/	

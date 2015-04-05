@@ -30,15 +30,13 @@
 			/*allows the array to be echoed out as one statement thanks to JSON*/
 		}
 		else{
-			echo "<p>Invalid username and/or password</p>";
+			echo "Invalid username and/or password";
 		}
 	}
 	else{
-		echo "<p>Invalid username and/or password</p>";
+		echo "Invalid username and/or password";
 		/*doesn't permait false users to know which paramater they are entering incorrectly*/
 	}
 	/*checks that information is stored in the query*/
 
 ?>
-	
-	<a href="<?php echo $path . "post.php"?>">Create posts here!</a>
