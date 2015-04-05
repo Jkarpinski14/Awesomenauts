@@ -131,6 +131,7 @@ game.PlayerEntity = me.Entity.extend({
 
 	throwSpear: function(){
 		if((this.now-this.lastSpear) >= game.data.spearTimer*1000 && game.data.ability3 > 0){
+			//the spearTimer is multiplied by 1000 to take it from seconds to milliseconds
 			this.lastSpear = this.now;
 			var spear = me.pool.pull("spear", this.pos.x, this.pos.y, {}, this.facing);
 			me.game.world.addChild(spear, 10);
