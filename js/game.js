@@ -40,7 +40,8 @@ var game = {
 		pausePos: "",
 		buyScreen: "",
 		buyText: "",
-		minimap: ""
+		minimap: "",
+		miniPlayer: ""
 	},
 	//sets a numerical value to all the different varying aspects of the game
 	
