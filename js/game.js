@@ -94,6 +94,7 @@ var game = {
 		me.pool.register("SpendGold", game.SpendGold);
 		me.pool.register("spear", game.SpearThrow, true);
 		me.pool.register("minimap", game.MiniMap, true);
+		me.pool.register("miniplayer", game.MiniPlayerLocation, true);
 		//set to true when there's multiple of that entity
 
 		me.state.set(me.state.MENU, new game.TitleScreen());
