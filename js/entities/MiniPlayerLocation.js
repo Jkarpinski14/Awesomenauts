@@ -49,7 +49,7 @@ game.MiniPlayerLocation = me.Entity.extend({
 
 	update: function(){
 		this.pos.x = (10 + (game.data.player.pos.x *0.2));
-		this.pos.x = (10 + (game.data.player.pos.y *0.2));
+		this.pos.y = (10 + (game.data.player.pos.y *0.2));
 		return true;
 	}
 });
