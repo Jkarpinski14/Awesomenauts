@@ -1,4 +1,4 @@
-game.spendGold = Object.extend({
+game.SpendGold = Object.extend({
 	init: function(x, y, settings){
 		this.now = new Date().getTime();
 		this.lastBuy = new Date().getTime();
@@ -32,7 +32,7 @@ game.spendGold = Object.extend({
 		this.buying = true;
 		me.state.pause(me.state.PLAY);
 		game.data.pausePos = me.game.viewport.localToWorld(0, 0);
-		game.data.buyscreen = new me.Sprite(game.data.pausePos.x, game.data.pausePos.y, me.loader.getImage('gold-screen'));
+		game.data.buyscreen = new me.Sprite(game.data.pausePos.x, game.data.pausePos.y, me.loader.getImage('title-screen'));
 		game.data.buyscreen.updateWhenPaused = true;
 		game.data.buyscreen.setOpacity(0.8);
 		me.game.world.addChild(game.data.buyscreen, 34);
@@ -43,7 +43,7 @@ game.spendGold = Object.extend({
 		me.input.bindKey(me.input.KEY.F4, "F4", true);
 		me.input.bindKey(me.input.KEY.F5, "F5", true);
 		me.input.bindKey(me.input.KEY.F6, "F6", true);
-		this.setByText();
+		this.setBuyText();
 	},
 	//brings up an opaque pause screen
 
