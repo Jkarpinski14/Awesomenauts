@@ -39,7 +39,8 @@ var game = {
 		win: "",
 		pausePos: "",
 		buyScreen: "",
-		buyText: ""
+		buyText: "",
+		minimap: ""
 	},
 	//sets a numerical value to all the different varying aspects of the game
 	
@@ -91,7 +92,8 @@ var game = {
 		me.pool.register("HeroDeathManager", game.HeroDeathManager);
 		me.pool.register("ExperienceManager", game.ExperienceManager);
 		me.pool.register("SpendGold", game.SpendGold);
-		me.pool.register("spear", game.SpearThrow);
+		me.pool.register("spear", game.SpearThrow, true);
+		me.pool.register("minimap", game.MiniMap, true);
 		//set to true when there's multiple of that entity
 
 		me.state.set(me.state.MENU, new game.TitleScreen());
